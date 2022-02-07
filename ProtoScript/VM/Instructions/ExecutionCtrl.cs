@@ -43,7 +43,7 @@ namespace ProtoScript.VM.Instructions
             }
 
             if (time < 0)
-                throw new ArgumentError("Wait time must be >=0", Executor.Code.Name, ln.OriginLine);
+                throw new ValueError("Wait time must be >=0", Executor.Code.Name, ln.OriginLine);
 
             Thread.Sleep((int)time);
             return null;

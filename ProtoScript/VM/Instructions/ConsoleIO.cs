@@ -24,6 +24,12 @@ namespace ProtoScript.VM.Instructions
             return new StringType(GetNameFromColor(Console.BackgroundColor));
         }
 
+        public static TypeBase ConCls(ExecutableLine _)
+        {
+            Console.Clear();
+            return null;
+        }
+
         public static TypeBase ForeColor(ExecutableLine ln)
         {
             if (ln.Arguments.Length == 1) {
@@ -42,7 +48,7 @@ namespace ProtoScript.VM.Instructions
         public static TypeBase GetKey(ExecutableLine _)
         {
             ConsoleKeyInfo key = Console.ReadKey(true);
-            return new StringType(key.KeyChar.ToString());
+            return new StringType(key.KeyChar.ToString().ToLower());
         }
 
         public static TypeBase Input(ExecutableLine ln)

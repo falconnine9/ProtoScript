@@ -23,7 +23,7 @@ namespace ProtoScript.Compiler
         public FileParser(string source, string filename)
         {
             this.FileName = filename;
-            this.Source = source.Trim().Replace("\r", string.Empty);
+            this.Source = source.Trim().Replace("\r", string.Empty).Replace("\t", string.Empty);
 
             this._lines = new List<AnonymousLine>();
             this._lineBuffer = new List<string>();

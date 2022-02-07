@@ -16,14 +16,17 @@ namespace ProtoScript
             "/",
             "%",
 
+            // Blocks
+            "end",
+            "if",
+            "loop",
+
             // Compilation Controllers
             "import",
 
-            // Conditionals
-            "if",
-
             // ConsoleIO
             "backcolor",
+            "concls",
             "forecolor",
             "getkey",
             "input",
@@ -31,6 +34,7 @@ namespace ProtoScript
             "println",
 
             // Execution Controllers
+            "exit",
             "jump",
             "label",
             "wait",
@@ -45,6 +49,9 @@ namespace ProtoScript
             ">=",
             "||",
             "&&",
+
+            // Random
+            "randint",
 
             // StringIO
             "concat",
@@ -63,6 +70,11 @@ namespace ProtoScript
             "set"
         };
 
+        public static readonly string[] BlockInstructions = {
+            "if",
+            "loop"
+        };
+
         public static readonly InstructionInfo[] InstructionData = {
             // Arithmetic
             new InstructionInfo(Arithmetic.AddOp, 2..2),
@@ -71,14 +83,17 @@ namespace ProtoScript
             new InstructionInfo(Arithmetic.DivOp, 2..2),
             new InstructionInfo(Arithmetic.RemainderOp, 2..2),
 
+            // Blocks
+            new InstructionInfo(BlockHandlers.HandleBlockEnd, 0..0), // End
+            new InstructionInfo(BlockHandlers.HandleIf, 1..1), // If
+            new InstructionInfo(BlockHandlers.HandleLoop, 1..1), // Loop
+
             // Compilation Controllers
             null, // Import
 
-            // Conditions
-            null, // If
-
             // ConsoleIO
             new InstructionInfo(ConsoleIO.BackColor, 0..1),
+            new InstructionInfo(ConsoleIO.ConCls, 0..0),
             new InstructionInfo(ConsoleIO.ForeColor, 0..1),
             new InstructionInfo(ConsoleIO.GetKey, 0..0),
             new InstructionInfo(ConsoleIO.Input, 0..1),
@@ -86,6 +101,7 @@ namespace ProtoScript
             new InstructionInfo(ConsoleIO.PrintLn, 1..1),
 
             // Execution Controllers
+            new InstructionInfo(ExecutionCtrl.Exit, 0..0),
             new InstructionInfo(ExecutionCtrl.Jump, 1..1),
             null, // Label
             new InstructionInfo(ExecutionCtrl.Wait, 1..1),
@@ -100,6 +116,9 @@ namespace ProtoScript
             new InstructionInfo(Logic.GreaterThanEqualTo, 2..2),
             new InstructionInfo(Logic.OrOp, 2..2),
             new InstructionInfo(Logic.AndOp, 2..2),
+
+            // Random
+            new InstructionInfo(Rand.RandInt, 2..2),
 
             // StringIO
             new InstructionInfo(StringIO.Concat, 2..2),

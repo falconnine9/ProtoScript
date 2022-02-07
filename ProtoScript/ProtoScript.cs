@@ -11,6 +11,7 @@ using System.IO;
 
 using ProtoScript.Compiler;
 using ProtoScript.Objects;
+using ProtoScript.Objects.Blocks;
 using ProtoScript.Objects.Lines;
 using ProtoScript.VM;
 
@@ -24,19 +25,12 @@ namespace ProtoScript
                 Console.Error.WriteLine("No input file provided");
                 return;
             }
+            if (!File.Exists(args[0])) {
+                Console.Error.WriteLine("Cannot find the input file");
+                return;
+            }
 
-            string source;
-            try {
-                source = File.ReadAllText(args[0]);
-            }
-            catch (DirectoryNotFoundException) {
-                Console.Error.WriteLine("Source file not found");
-                return;
-            }
-            catch (FileNotFoundException) {
-                Console.Error.WriteLine("Source file not found");
-                return;
-            }
+            string source = File.ReadAllText(args[0]);
 
             try {
                 Executor.Code = CompileSource(args[0], ref source);
@@ -57,9 +51,10 @@ namespace ProtoScript
             Source initial_source = LineSummarizer.SummarizeLines(filename, empty_lines);
 
             // Indexing and stuff
-            Dictionary<string, int> label_index = Indexers.IndexLabels(ref initial_source);
+            Dictionary<string, int> label_index = Indexers.IndexLabels(initial_source);
+            Dictionary<int, BlockBase> block_index = Indexers.IndexBlocks(initial_source);
 
-            return new Source(filename, initial_source.Lines, label_index);
+            return new Source(filename, initial_source.Lines, label_index, block_index);
         }
     }
 }

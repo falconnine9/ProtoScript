@@ -14,7 +14,10 @@ namespace ProtoScript.VM
     {
         public static Source Code = null;
         public static int ExecutionLine = 0;
+
         public static Dictionary<string, TypeBase> Variables = new();
+
+        public static Random RandomGenerator = new();
 
         public static void BeginCycle()
         {
