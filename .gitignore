@@ -1,0 +1,11 @@
+# Compilation and stuff
+bin/
+obj/
+
+# IDE stuff
+Properties/
+ProtoScript.csproj.user
+
+# General
+.env
+*.exe
