@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace ProtoScript.Objects.Lines
+namespace ProtoScript.Objects.Lines;
+
+abstract class LineBase
 {
-    abstract class LineBase
-    {
-        public abstract Type RealType { get; }
-    }
+    public abstract Type RealType { get; }
+    public abstract int OriginLine { get; }
 }

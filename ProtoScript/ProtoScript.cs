@@ -12,29 +12,30 @@ using ProtoScript.Compiler;
 using ProtoScript.Helpers;
 using ProtoScript.VM;
 
-namespace ProtoScript
+namespace ProtoScript;
+
+class ProtoScript
 {
-    class ProtoScript
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
-        {
-            if (args.Length == 0) {
-                Logger.LogFatal("No input file provided");
-                return;
-            }
-            if (!File.Exists(args[0])) {
-                Logger.LogFatal("Cannot find the input file");
-                return;
-            }
+        if (args.Length == 0) {
+            Logger.LogFatal("No input file provided");
+            return;
+        }
+        if (!File.Exists(args[0])) {
+            Logger.LogFatal("Cannot find the input file");
+            return;
+        }
 
-            string source = File.ReadAllText(args[0]);
+        string source = File.ReadAllText(args[0]);
 
-            try {
-                Executor.Code = CompilerMain.CompileSource(args[0], ref source);
-                Executor.BeginCycle();
-            } catch (Exception e) {
-                Logger.LogFatal(e.ToString());
-            }
+        try {
+            Executor.Code = CompilerMain.CompileSource(args[0], source);
+            VariableConstants.SetConstantVariables();
+            Executor.BeginCycle();
+        }
+        catch (Exception e) {
+            Logger.LogFatal(e.ToString());
         }
     }
 }

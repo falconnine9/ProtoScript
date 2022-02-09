@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace ProtoScript.Objects.Arguments
+namespace ProtoScript.Objects.Arguments;
+
+abstract class ArgumentBase
 {
-    abstract class ArgumentBase
-    {
-        public abstract Type RealType { get; }
-    }
+    public abstract Type RealType { get; }
 }

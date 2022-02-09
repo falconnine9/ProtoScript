@@ -1,11 +1,10 @@
 ﻿using System;
 
-namespace ProtoScript.Objects.Blocks
+namespace ProtoScript.Objects.Blocks;
+
+abstract class BlockBase
 {
-    abstract class BlockBase
-    {
-        public abstract Type RealType { get; }
-        public abstract int Condition { get; }
-        public abstract int End { get; }
-    }
+    public abstract Type RealType { get; }
+    public abstract int Condition { get; }
+    public abstract int End { get; }
 }

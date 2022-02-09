@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace ProtoScript.Objects.Types
+namespace ProtoScript.Objects.Types;
+
+abstract class TypeBase
 {
-    abstract class TypeBase
-    {
-        public abstract Type RealType { get; }
-    }
+    public abstract Type RealType { get; }
 }
